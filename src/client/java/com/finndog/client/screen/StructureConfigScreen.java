@@ -35,7 +35,7 @@ public class StructureConfigScreen extends Screen {
         this.nameField = new EditBox(this.font, cx - FIELD_WIDTH / 2, cy - SPACING, FIELD_WIDTH, FIELD_HEIGHT,
                 Component.literal("Structure Name"));
         this.nameField.setMaxLength(128);
-        this.nameField.setFilter(s -> s.matches("[a-z0-9/._-]*"));
+        this.nameField.setFilter(s -> s.matches("[a-z0-9/:._-]*"));
         this.nameField.setHint(Component.literal("structure_name"));
         this.nameField.setResponder(this::onNameChanged);
         this.addRenderableWidget(this.nameField);
