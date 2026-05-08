@@ -5,7 +5,9 @@
 	"client": [
 		"MouseScrollMixin",
 		"KeyboardInputMixin",
-		"PickBlockMixin"
+		"PickBlockMixin",
+		"SetScreenMixin",
+		"StructureBlockEditScreenAccessor"
 	],
 	"injectors": {
 		"defaultRequire": 1
