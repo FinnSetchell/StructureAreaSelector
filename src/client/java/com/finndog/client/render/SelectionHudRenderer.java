@@ -1,5 +1,6 @@
 package com.finndog.client.render;
 
+import com.finndog.client.ModKeyBindings;
 import com.finndog.client.SelectionState;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
@@ -64,7 +65,9 @@ public final class SelectionHudRenderer {
             }
             case BOTH_SET -> {
                 drawIconHint(graphics, mc, cx, y, ICON_SCROLL, "Extend");
-                drawTextHint(graphics, mc, cx, y + LINE_SPACING, "[Enter] Save · [Esc] Cancel");
+                String confirm = ModKeyBindings.CONFIRM.getTranslatedKeyMessage().getString();
+                String cancel = ModKeyBindings.CANCEL.getTranslatedKeyMessage().getString();
+                drawTextHint(graphics, mc, cx, y + LINE_SPACING, "[" + confirm + "] Save · [" + cancel + "] Cancel");
             }
             default -> {}
         }

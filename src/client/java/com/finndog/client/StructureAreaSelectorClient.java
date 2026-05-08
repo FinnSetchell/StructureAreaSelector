@@ -17,7 +17,6 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.level.Level;
-import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.phys.BlockHitResult;
 
 @Environment(EnvType.CLIENT)
@@ -25,6 +24,8 @@ public class StructureAreaSelectorClient implements ClientModInitializer {
 
     @Override
     public void onInitializeClient() {
+        ModKeyBindings.register();
+
         UseBlockCallback.EVENT.register((player, world, hand, hitResult) -> {
             if (!world.isClientSide()) return InteractionResult.PASS;
 
@@ -38,10 +39,8 @@ public class StructureAreaSelectorClient implements ClientModInitializer {
             if (player.isCreative() && player.getItemInHand(hand).is(Items.STRUCTURE_BLOCK)) {
                 BlockPos placePos = calculatePlacementPos(world, hitResult);
                 Minecraft.getInstance().execute(() -> {
-                    if (world.getBlockState(placePos).is(Blocks.STRUCTURE_BLOCK)) {
-                        state.startConfig(placePos);
-                        Minecraft.getInstance().setScreen(new StructureConfigScreen());
-                    }
+                    state.startConfig(placePos);
+                    Minecraft.getInstance().setScreen(new StructureConfigScreen());
                 });
             }
 

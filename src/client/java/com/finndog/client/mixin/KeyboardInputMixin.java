@@ -1,5 +1,6 @@
 package com.finndog.client.mixin;
 
+import com.finndog.client.ModKeyBindings;
 import com.finndog.client.SelectionState;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
@@ -24,11 +25,11 @@ public class KeyboardInputMixin {
         SelectionState state = SelectionState.getInstance();
         if (!state.isActive()) return;
 
-        int key = keyEvent.key();
-        if (key == GLFW.GLFW_KEY_ESCAPE || key == GLFW.GLFW_KEY_X) {
+        if (keyEvent.key() == GLFW.GLFW_KEY_ESCAPE || ModKeyBindings.CANCEL.matches(keyEvent)) {
             state.cancel();
             ci.cancel();
-        } else if (key == GLFW.GLFW_KEY_ENTER || key == GLFW.GLFW_KEY_KP_ENTER || key == GLFW.GLFW_KEY_G) {
+        } else if (keyEvent.key() == GLFW.GLFW_KEY_ENTER || keyEvent.key() == GLFW.GLFW_KEY_KP_ENTER
+                || ModKeyBindings.CONFIRM.matches(keyEvent)) {
             if (state.getState() == SelectionState.State.BOTH_SET && state.isValidSize()) {
                 state.confirm();
             }
