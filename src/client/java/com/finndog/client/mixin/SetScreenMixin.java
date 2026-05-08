@@ -29,6 +29,8 @@ public class SetScreenMixin {
         if (state.getState() != SelectionState.State.IDLE) return;
 
         StructureBlockEntity blockEntity = ((StructureBlockEditScreenAccessor) screen).getStructure();
+        if (blockEntity.hasStructureName()) return;
+
         BlockPos pos = blockEntity.getBlockPos();
 
         state.startConfig(pos);
