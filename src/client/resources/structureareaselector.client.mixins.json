@@ -3,7 +3,9 @@
 	"package": "com.finndog.client.mixin",
 	"compatibilityLevel": "JAVA_21",
 	"client": [
-		"ExampleClientMixin"
+		"MouseScrollMixin",
+		"KeyboardInputMixin",
+		"PickBlockMixin"
 	],
 	"injectors": {
 		"defaultRequire": 1
